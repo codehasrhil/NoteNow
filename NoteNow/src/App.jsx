@@ -52,7 +52,7 @@ function App() {
 }, [dark]);
   
   return (
-    <div className={`max-w-[1100px] ml-auto mr-auto pr-[15px] pl-[15px] ${dark ? 'bg-black text-white' : 'bg-white text-black'}`}>
+    <div className={`w-[1100px] ml-auto mr-auto pr-[15px] pl-[15px] ${dark ? 'bg-black text-white' : 'bg-white text-black'}`}>
        <Header dark={dark} setDark={setdark} />
        <Search handleSearchNote={setSearchText} dark={dark} setDark={setdark}/>
        <NoteList Notes={Notes.filter((note) => note.text.toLowerCase().includes(searchText))} dark={dark} setDark={setdark} setNotes={setNotes} handleAddnote={addNote} handledeleteNote = {deleteNote} />

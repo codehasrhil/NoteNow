@@ -6,7 +6,14 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'custom': '1100px',  // You can name it whatever you like
+      },
+      maxWidth: {
+        '1100': '1100px',    // Optional: for clarity
+      },
   },
+},
   plugins: [],
 }
