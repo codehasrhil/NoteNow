@@ -1,13 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {nanoid} from 'nanoid'
 import NoteList from './Componets/NoteList'
 import './App.css'
+import Header from './Componets/Header'
+import Search from './Componets/search';
 
 function App() {
+  
+  const [searchText , setSearchText] = useState('');
+  const [dark , setdark] = useState(false);
 
-  const [Notes,setNotes]  = useState([
 
-  ]);
+
+ const [Notes, setNotes] = useState(() => {
+     const savedNotes = JSON.parse(localStorage.getItem('react-notes-app-data'));
+     return savedNotes || [];
+});
+
+
+
+  useEffect(() => {
+    localStorage.setItem('react-notes-app-data', JSON.stringify(Notes));
+    console.log('notes svaed',Notes);
+  }, [Notes]);
 
 
   const addNote = (text) =>{
@@ -28,9 +43,19 @@ function App() {
    setNotes(newNotes);
   }
 
+ useEffect(() => {
+  if (dark) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+}, [dark]);
+  
   return (
-    <div className='max-w-[900px] ml-auto mr-auto pr-[15px] pl-[15px]'>
-       <NoteList Notes={Notes} setNotes={setNotes} handleAddnote={addNote} handledeleteNote = {deleteNote} />
+    <div className={`max-w-[1100px] ml-auto mr-auto pr-[15px] pl-[15px] ${dark ? 'bg-black text-white' : 'bg-white text-black'}`}>
+       <Header dark={dark} setDark={setdark} />
+       <Search handleSearchNote={setSearchText} dark={dark} setDark={setdark}/>
+       <NoteList Notes={Notes.filter((note) => note.text.toLowerCase().includes(searchText))} dark={dark} setDark={setdark} setNotes={setNotes} handleAddnote={addNote} handledeleteNote = {deleteNote} />
     </div>
   )
 }

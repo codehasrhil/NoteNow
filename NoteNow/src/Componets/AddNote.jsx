@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const AddNote = ({handleAddnote}) => {
+const AddNote = ({handleAddnote,dark}) => {
   const [NoteText, setNoteText] = useState('');
   const characterLimit = 200;
 
@@ -24,7 +24,7 @@ const AddNote = ({handleAddnote}) => {
   }
   return (
     <div>
-      <div className='bg-blue-300  rounded-xl p-[1rem] min-h-44  flex flex-col justify-between font-sans text-xl font-bold '>
+      <div className={`  rounded-xl p-[1rem] min-h-44  flex flex-col justify-between font-sans text-xl font-bold bg-blue-300 text-black`}>
         <textarea
           rows={5}
           cols={5}
@@ -35,7 +35,7 @@ const AddNote = ({handleAddnote}) => {
         </textarea>
         <div className='flex  items-center justify-between'>
           <small>{characterLimit - NoteText.length} Remainig</small>
-          <button className='bg-white text-black pl-3 pr-3 text-[16px] pt-1 pb-1 border-none rounded-2xl hover:bg-pink-200 cursor-pointer' onClick={handlesave}>Save</button>
+          <button className='bg-pink-100 text-black pl-3 pr-3 text-[16px] pt-1 pb-1 border-none rounded-2xl hover:bg-pink-200 cursor-pointer' onClick={handlesave}>Save</button>
         </div>
       </div>
     </div>
