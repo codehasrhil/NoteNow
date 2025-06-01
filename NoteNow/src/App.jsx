@@ -55,7 +55,7 @@ function App() {
     <div className={`ml-auto mr-auto pr-[15px] pl-[15px] ${dark ? 'bg-black text-white' : 'bg-white text-black'}`}  style={{ maxWidth: '1100px' }}>
        <Header dark={dark} setDark={setdark} />
        <Search handleSearchNote={setSearchText} dark={dark} setDark={setdark}/>
-       <NoteList Notes={Notes.filter((note) => note.text.toLowerCase().includes(searchText))} dark={dark} setDark={setdark} setNotes={setNotes} handleAddnote={addNote} handledeleteNote = {deleteNote} />
+       <NoteList Notes={Notes.filter((note) => note.text.toLowerCase().includes(searchText.toLowerCase()))} dark={dark} setDark={setdark} setNotes={setNotes} handleAddnote={addNote} handledeleteNote = {deleteNote} />
     </div>
   )
 }
